@@ -1,0 +1,160 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+body{
+	background-image: url("img/bg.jpg");
+}
+
+#heading{
+	background-color: black;
+	font-size: 8px;
+	color: white;
+}
+
+#heading p{
+	padding: 15px 0 0 0 ;
+}
+
+#container1{
+	display: flex;
+	flex-wrap: nowrap;
+	margin: auto;
+	min-width: 700px;
+	max-width: 1800px;
+	padding: 0px 10px 0px 10px;
+}
+
+#divProduct{
+	width: 72%;
+	margin-right: 1%;
+}
+
+#divCheckout{
+	width: 27%;
+
+}
+
+/*
+.panel .panel-heading{
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	border-right: 0px;
+	border-left:0px;
+}
+*/
+
+
+#heading1,#heading2,#heading3,#heading4,#heading5{
+	background-color: #D2E9FF;	
+}
+
+.panel-title{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+
+
+/*item */
+
+.item{
+
+}
+
+.itemBtn{
+	height: 300px;
+}
+
+#item1Display,#item2Display,#item3Display,#item4Display,#item5Display
+,#item6Display,#item7Display,#item8Display,#item9Display,#item10Display{
+	display: none;
+}
+
+.panel-title>a{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+
+}
+.name{
+	width: 70%;
+	min-width: 200px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.price{
+	color: black;
+	font-size: 1em;
+	width: ;
+	font-weight: normal;
+}
+
+
+.heat, .sugar{
+	font-size: 0.5em;
+	padding-right: 10%;
+	min-height: 0px;
+	font-weight: normal;
+}
+
+#countTitle{
+	font-size: 1.5em;
+	font-weight: ;
+}
+
+#total{
+	font-size: 2em;
+	font-weight: bold;
+}
+
+#countArea{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+#countArea > span:first-child{
+	width: 60%;
+}
+
+#payMoney{
+	padding-top: 420px;
+	display: none;
+
+}
+
+
+#checkOutButton{
+	margin:auto;
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+
+}
+#checkOutButton> div:first-child{
+	padding-right: 40px;
+	padding-left: 6px;
+}
+
+#checkOutButton> div:nth-child(2){
+	padding-left: 40px;
+	padding-right: 6px;
+}
+
+#pay,#noPay{
+	font-size: 1.1em;
+	font-weight: ;
+	color: ;
+}
+
+
+#item1Display{
+}
