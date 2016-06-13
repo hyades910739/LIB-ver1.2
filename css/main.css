@@ -5,9 +5,6 @@
 }
 
 
-body{
-	background-image: url("img/bg.jpg");
-}
 
 #heading{
 	background-color: black;
@@ -158,3 +155,37 @@ body{
 
 #item1Display{
 }
+
+
+#popUpHeading{
+	background-color:#FAD8B6;
+	width: 100%;
+	height: 20%;
+
+}
+
+
+#OKicon{
+	font-size: 3.5em;
+	color: #DF8B37;
+	margin-left: 5px;	
+}
+
+#popUpMsg{
+	font-size: 3.3em;
+	font-weight: bold;
+	color: #DF8B37;
+	margin-left: 15px;	
+}
+
+#popUp{
+	display: flex;
+	margin: auto;
+	align-items: center;
+	margin-top: 20px;
+
+
+}
+
+
+

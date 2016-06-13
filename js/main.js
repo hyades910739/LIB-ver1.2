@@ -115,6 +115,19 @@ $("#pay").click(function(){
 	//資料掰掰
 	removeData();
 	checkTime=[];
+
+	//iframe
+	layer.open({
+	  type: 1,
+	  title: false,
+	  closeBtn: 0, 
+	  shade: [0],
+	  area: ['340px', '200px'],
+	  offset: 'rb', 
+	  time: 2000, 
+	  shift: 2,
+	  content: '<div id="popUpHeading"></div><div id="popUp"><span id="OKicon" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span><span id="popUpMsg">結帳已完成</span></div>'
+	});
 });
 
 
