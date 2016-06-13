@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LIB銷貨查詢系統</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/query.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">LIB銷貨查詢</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#step1">輸入日期</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#step2">選擇產品</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#step3">查詢結果</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    
+                    <div class="col-md-4" id="instruction">
+                        <h1>查詢步驟</h1>
+                        <h2>Step1</h2>
+                        <p>輸入日期，選擇查詢月銷量或日銷量</p>
+                        <h2>Step2</h2>
+                        <p>選擇欲查詢之產品</p>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>     
+            </div>
+            <div class="col-lg-12">
+                <a class="btn btn-primary page-scroll" href="#step1" id="startBtn">
+                <span class="glyphicon glyphicon-search" aria-hidden="true" id="searchIcon"></span>
+                <span>開始查詢</span>
+                </a>   
+            </div> 
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="step1" class="about-section">
+        <div class="container">
+            <div class="row">
+                <h1>Step1:輸入日期</h1>
+                <div class="col-md-6">
+                    <form class="form">
+                      <div class="form-group">
+                        <label for="monthInput">請輸入欲查詢日期<br></label>
+                        <input type="date" class="form-control" id="dateInput" name="user_date" />
+                      </div>
+                    </form>
+                    <a class="btn btn-primary page-scroll" href="#step2" id="dateBtn" >下一步</a>
+                </div>
+
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="step2" class="services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-warning alert-dismissible" role="alert" id="page3Alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      您所輸入的日期為:&nbsp;&nbsp;<strong><span id="day">您尚未輸入</span></strong>。
+                      <a href="#step1" class="alert-link page-scroll">重新輸入</a>
+                    </div>
+                    <h1>Step2:選擇欲查詢之商品</h1>
+
+<!--_____________________________product picker_______________________ -->
+    <div id="container1">
+        <div id="divProduct">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading" id="heading1">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                     COFFEE &nbsp;&nbsp;&nbsp;&nbsp;咖&nbsp;&nbsp;啡
+                     </a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              美式黑咖啡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="美式黑咖啡M" pNo="8" pPrice="40"><a>M &nbsp;&nbsp; $40</a></li>
+                              <li class="product" pName="美式黑咖啡L" pNo="10" pPrice="55"><a>L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              路易莎特調咖啡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="路易莎特調咖啡M" pNo="9" pPrice="50"><a href="null">M &nbsp;&nbsp; $50</a></li>
+                              <li class="product" pName="路易莎特調咖啡L" pNo="11" pPrice="65"><a href="null">L &nbsp;&nbsp; $65</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              抹茶咖啡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="抹茶咖啡M" pNo="12" pPrice="50"><a href="#">M &nbsp;&nbsp; $50</a></li>
+                              <li class="product" pName="抹茶咖啡L" pNo="13" pPrice="65"><a href="#">L &nbsp;&nbsp; $65</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              鴛鴦咖啡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="鴛鴦咖啡M" pNo="14" pPrice="55"><a href="#">M &nbsp;&nbsp; $55</a></li>
+                              <li class="product" pName="鴛鴦咖啡L" pNo="15" pPrice="70"><a href="#">L &nbsp;&nbsp; $70</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              咖啡密思朵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="咖啡蜜思朵M" pNo="16" pPrice="55"><a href="#">M &nbsp;&nbsp; $55</a></li>
+                              <li class="product" pName="咖啡密思朵L" pNo="17" pPrice="70"><a href="#">L &nbsp;&nbsp; $70</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              米朗琪牛奶咖啡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="米朗琪牛奶咖啡M" pNo="18" pPrice="55"><a href="#">M &nbsp;&nbsp; $55</a></li>
+                              <li class="product" pName="米朗琪牛奶咖啡L" pNo="19" pPrice="70"><a href="#">L &nbsp;&nbsp; $70</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              卡布奇諾
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="卡布奇諾M" pNo="22" pPrice="60"><a href="#">M &nbsp;&nbsp; $60</a></li>
+                              <li class="product" pName="卡布奇諾L" pNo="21" pPrice="80"><a href="#">L &nbsp;&nbsp; $80</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              咖啡拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="咖啡拿鐵M" pNo="23" pPrice="60"><a href="#">M &nbsp;&nbsp; $60</a></li>
+                              <li class="product" pName="咖啡拿鐵L" pNo="24" pPrice="80"><a href="#">L &nbsp;&nbsp; $80</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黑糖拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黑糖拿鐵M" pNo="25" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="黑糖拿鐵L" pNo="26" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              抹茶拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="抹茶拿鐵M" pNo="27" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="抹茶拿鐵L" pNo="28" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              香草拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="香草拿鐵M" pNo="29" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="香草拿鐵L" pNo="30" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              榛果拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="榛果拿鐵M" pNo="31" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="榛果拿鐵L" pNo="32" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              焦糖拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="焦糖拿鐵M" pNo="33" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="焦糖拿鐵L" pNo="34" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              橘皮拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="橘皮拿鐵M" pNo="35" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="橘皮拿鐵L" pNo="36" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              義式摩卡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="義式摩卡M" pNo="37" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="義式摩卡L" pNo="38" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              白巧克力摩卡
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="白巧克力摩卡M" pNo="39" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="白巧克力摩卡L" pNo="40" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              焦糖馬奇朵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="焦糖馬奇朵M" pNo="41" pPrice="75"><a href="#">M &nbsp;&nbsp; $75</a></li>
+                              <li class="product" pName="焦糖馬奇朵L" pNo="42" pPrice="95"><a href="#">L &nbsp;&nbsp; $95</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              焦糖馬奇朵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="焦糖馬奇朵M" pNo="41" pPrice="75"><a href="#">M &nbsp;&nbsp; $75</a></li>
+                              <li class="product" pName="焦糖馬奇朵L" pNo="42" pPrice="95"><a href="#">L &nbsp;&nbsp; $95</a></li>
+                            </ul>
+                          </div>    
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              焦糖馬奇朵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="焦糖馬奇朵M" pNo="41" pPrice="75"><a href="#">M &nbsp;&nbsp; $75</a></li>
+                              <li class="product" pName="焦糖馬奇朵L" pNo="42" pPrice="95"><a href="#">L &nbsp;&nbsp; $95</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              焦糖馬奇朵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="焦糖馬奇朵M" pNo="41" pPrice="75"><a href="#">M &nbsp;&nbsp; $75</a></li>
+                              <li class="product" pName="焦糖馬奇朵L" pNo="42" pPrice="95"><a href="#">L &nbsp;&nbsp; $95</a></li>
+                            </ul>
+                          </div>                                                                                        
+                        </div>  
+                        <!-- 一個butoon group -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading" id="heading2">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                      SPECIALTY COFFEE &nbsp;&nbsp;&nbsp;&nbsp;莊園級咖啡
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              莊園級美式
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="莊園級美式M" pNo="43" pPrice="50"><a href="#">M &nbsp;&nbsp; $50</a></li>
+                              <li class="product" pName="莊園級美式L" pNo="44" pPrice="70"><a href="#">L &nbsp;&nbsp; $70</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              莊園級拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="莊園級拿鐵M" pNo="45" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="莊園級拿鐵L" pNo="46" pPrice="95"><a href="#">L &nbsp;&nbsp; $95</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              莊園級手沖歐蕾
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="莊園級手沖歐蕾" pNo="47" pPrice="65"><a href="#">$65</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              蘇門答臘-曼特寧
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="蘇門答臘-曼特寧" pNo="48" pPrice="55"><a href="#">$55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              曼巴
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="曼巴" pNo="49" pPrice="55"><a href="#">$55</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              哥倫比亞
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="哥倫比亞" pNo="50" pPrice="55"><a href="#">$55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              衣索比亞-耶加雪夫
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="衣索比亞-耶加雪夫" pNo="51" pPrice="60"><a href="#">$60</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              肯亞AA
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="肯亞AA" pNo="52" pPrice="60"><a href="#">$60</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黃金曼特寧
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黃金曼特寧" pNo="53" pPrice="80"><a href="#">$80</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              曼巴
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="曼巴" pNo="49" pPrice="55"><a href="#">$55</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading" id="heading3">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                      TAYLORS TEA &nbsp;&nbsp;&nbsp;&nbsp;皇家泰勒茶品
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              泰勒紅茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="泰勒紅茶" pNo="54" pPrice="50"><a href="#">$35</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              泰勒奶茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="泰勒奶茶M" pNo="55" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="泰勒奶茶L" pNo="56" pPrice="60"><a href="#">L &nbsp;&nbsp; $60</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黑糖雪點奶茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黑糖雪點奶茶" pNo="57" pPrice="50"><a href="#">$50</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              泰勒紅茶拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="泰勒紅茶拿鐵M" pNo="58" pPrice="55"><a href="#">M &nbsp;&nbsp; $55</a></li>
+                              <li class="product" pName="泰勒紅茶拿鐵L" pNo="59" pPrice="70"><a href="#">L &nbsp;&nbsp; $70</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              西柚茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="西柚茶" pNo="60" pPrice="50"><a href="#">$50</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              檸檬柑橘茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="檸檬柑橘茶" pNo="61" pPrice="50"><a href="#">$50</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              西香蔓越莓茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="西香蔓越莓茶" pNo="62" pPrice="50"><a href="#">$50</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              肯亞AA
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="肯亞AA" pNo="52" pPrice="60"><a href="#">$60</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黃金曼特寧
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黃金曼特寧" pNo="53" pPrice="80"><a href="#">$80</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              曼巴
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="曼巴" pNo="49" pPrice="55"><a href="#">$55</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading" id="heading4">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                     FRUIT TEA &nbsp;&nbsp;&nbsp;&nbsp;水果茶系列
+                     </a>
+                  </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              經典水果茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="經典水果茶M" pNo="63" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="經典水果茶L" pNo="64" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              鮮橙綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="鮮橙綠茶M" pNo="65" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="鮮橙綠茶L" pNo="66" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              葡萄柚綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="葡萄柚綠茶M" pNo="67" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="葡萄柚綠茶L" pNo="68" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              檸檬綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="檸檬綠茶M" pNo="69" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="檸檬綠茶L" pNo="70" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              百香綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="百香綠茶M" pNo="71" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="百香綠茶L" pNo="72" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              芒果綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="芒果綠茶M" pNo="73" pPrice="40"><a href="#">M &nbsp;&nbsp; $40</a></li>
+                              <li class="product" pName="芒果綠茶L" pNo="74" pPrice="50"><a href="#">L &nbsp;&nbsp; $50</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              梅果綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="梅果綠茶M" pNo="75" pPrice="40"><a href="#">M &nbsp;&nbsp; $40</a></li>
+                              <li class="product" pName="梅果綠茶L" pNo="76" pPrice="50"><a href="#">L &nbsp;&nbsp; $50</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              咖啡拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="咖啡拿鐵M" pNo="23" pPrice="60"><a href="#">M &nbsp;&nbsp; $60</a></li>
+                              <li class="product" pName="咖啡拿鐵L" pNo="24" pPrice="80"><a href="#">L &nbsp;&nbsp; $80</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黑糖拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黑糖拿鐵M" pNo="25" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="黑糖拿鐵L" pNo="26" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              抹茶拿鐵
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="抹茶拿鐵M" pNo="27" pPrice="70"><a href="#">M &nbsp;&nbsp; $70</a></li>
+                              <li class="product" pName="抹茶拿鐵L" pNo="28" pPrice="90"><a href="#">L &nbsp;&nbsp; $90</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading" id="heading5">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                     TEA &nbsp;&nbsp;&nbsp;&nbsp;單品茶
+                     </a>
+                  </h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                  <div class="panel-body">
+                        <!-- 一個butoon group -->
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              錫蘭紅茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="錫蘭紅茶M" pNo="77" pPrice="30"><a href="#">M &nbsp;&nbsp; $30</a></li>
+                              <li class="product" pName="錫蘭紅茶L" pNo="78" pPrice="35"><a href="#">L &nbsp;&nbsp; $35</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              黛香綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="黛香綠茶M" pNo="79" pPrice="30"><a href="#">M &nbsp;&nbsp; $30</a></li>
+                              <li class="product" pName="黛香綠茶L" pNo="80" pPrice="35"><a href="#">L &nbsp;&nbsp; $35</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              葡萄柚綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="葡萄柚綠茶M" pNo="67" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="葡萄柚綠茶L" pNo="68" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              檸檬綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="檸檬綠茶M" pNo="69" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="檸檬綠茶L" pNo="70" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                          <!--一個產品dropdown -->
+                          <div class="btn-group invisible" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              百香綠茶
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li class="product" pName="百香綠茶M" pNo="71" pPrice="45"><a href="#">M &nbsp;&nbsp; $45</a></li>
+                              <li class="product" pName="百香綠茶L" pNo="72" pPrice="55"><a href="#">L &nbsp;&nbsp; $55</a></li>
+                            </ul>
+                          </div>
+                        </div>  
+                        <!-- 一個butoon group -->
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div id="divCheckout">
+            <div id="itemDisplay">
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item1Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item1" id="item1Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item1" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="1">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="1">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->              
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item2Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item2" id="item2Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>                      
+                      </h4>
+                    </div>
+                    <div id="item2" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="2">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="2">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item3Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item3" id="item3Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>                      
+                      </h4>
+                    </div>
+                    <div id="item3" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="3">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="3">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item4Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item4" id="item4Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item4" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="4">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="4">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item5Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item5" id="item5Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item5" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="5">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="5">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item6Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item6" id="item6Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item6" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="6">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="6">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item7Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item7" id="item7Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item7" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="7">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="7">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item8Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item8" id="item8Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item8" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="8">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="8">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item9Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item9" id="item9Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item9" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="9">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="9">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+                <!-- 一個結帳商品 -->
+                <div class="panel-group" id="item10Display">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#item10" id="item10Name" >Collapsible panel</a>
+                        <span class="sugar"></span>
+                        <span class="heat"></span>
+                      </h4>
+                    </div>
+                    <div id="item10" class="panel-collapse collapse">
+                      <div class="panel-body">
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <!--一個產品dropdown -->
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              甜度
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="10">
+                              <li class="productSugar" sugar="正常糖" ><a href="#">正常甜</a></li>
+                              <li class="productSugar" sugar="七分糖" ><a href="#">七分糖</a></li>
+                              <li class="productSugar" sugar="半糖" ><a href="#">半糖</a></li>
+                              <li class="productSugar" sugar="三分糖" ><a href="#">三分糖</a></li>
+                              <li class="productSugar" sugar="無糖" ><a href="#">無糖</a></li>
+                            </ul>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              冰塊
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" no="10">
+                              <li class="productHeat" heat="熱"><a href="#">熱</a></li>
+                              <li class="productHeat" heat="溫"><a href="#">溫</a></li>
+                              <li class="productHeat" heat="去冰"><a href="#">去冰</a></li>
+                              <li class="productHeat" heat="微冰"><a href="#">微冰</a></li>
+                              <li class="productHeat" heat="少冰"><a href="#">少冰</a></li>
+                              <li class="productHeat" heat="正常"><a href="#">正常冰</a></li>
+                            </ul>
+                          </div>
+                        </div>          
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 一個結帳商品END -->  
+            </div>
+            <div id="payMoney" >
+                <div class="panel panel-primary" >
+                    <div class="panel-heading" id="countTitle">點擊完成查詢</div>
+                    <div id="countArea">
+                        <div id="checkOutButton" class="btn-group btn-group-justified" role="group" aria-label="...">
+                          <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-warning" id="noPay">重設</button>
+                          </div>
+                          <div class="btn-group" role="group">
+                            <a class="page-scroll" href="#step3"><button type="button" class="btn btn-warning" id="monthQuery">月銷量</button></a> 
+                          </div>
+                          <div class="btn-group" role="group">
+                            <a class="page-scroll" href="#step3"><button type="button" class="btn btn-warning" id="pay" >日銷量</button></a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--_____________________________product picker_______________________ -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="step3" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>查詢結果</h1>
+                    <!-- _____________________圖表輸出______________________ -->
+                    <div>
+                        <div id="result">
+                            <div>
+                                <div id="resultContainer">                          
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <!-- _____________________圖表輸出______________________ -->
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div id="query">
+                        <a href="#step2" class="page-scroll">
+                            <button class="btn btn-primary" type="button"  id="return1" > 
+                                重新選擇產品
+                            </button>
+                        </a>
+                        <a href="#step1" class="page-scroll">
+                            <button class="btn btn-primary" type="button"  id="return2">
+                                重新選擇日期
+                            </button>
+                        </a>
+                        <a href="#intro" class="page-scroll">
+                            <button class="btn btn-primary" type="button"  id="return3" > 
+                                回到首頁
+                            </button>
+                        </a>
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+    <script type="text/javascript" src="js/query.js"></script>
+    <script type="text/javascript" src="layer/layer.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</body>
+
+</html>

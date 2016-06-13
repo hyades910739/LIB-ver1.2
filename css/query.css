@@ -1,0 +1,210 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+
+#heading{
+	background-color: black;
+	font-size: 8px;
+	color: white;
+}
+
+#heading p{
+	padding: 15px 0 0 0 ;
+}
+
+
+#container1{
+	display: flex;
+	flex-wrap: nowrap;
+	margin: auto;
+	padding: 0px px 0px px;
+}
+
+#divProduct{
+	width: 72%;
+	margin-right: 1%;
+}
+
+#divCheckout{
+	width: 27%;
+
+}
+
+/*
+.panel .panel-heading{
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	border-right: 0px;
+	border-left:0px;
+}
+*/
+
+
+#heading1,#heading2,#heading3,#heading4,#heading5{
+	background-color: #D2E9FF;	
+}
+
+.panel-title{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+
+
+/*item */
+
+.item{
+
+}
+
+.itemBtn{
+	height: 300px;
+}
+
+#item1Display,#item2Display,#item3Display,#item4Display,#item5Display
+,#item6Display,#item7Display,#item8Display,#item9Display,#item10Display{
+	display: none;
+}
+
+.panel-title>a{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+
+}
+.name{
+	width: 70%;
+	min-width: 200px;
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.price{
+	color: black;
+	font-size: 1em;
+	width: ;
+	font-weight: normal;
+}
+
+
+.heat, .sugar{
+	font-size: 0.5em;
+	padding-right: 10%;
+	min-height: 0px;
+	font-weight: normal;
+}
+
+#countTitle{
+	font-size: 1.5em;
+	font-weight: ;
+}
+
+#total{
+	font-size: 2em;
+	font-weight: bold;
+}
+
+#countArea{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+}
+
+#countArea > span:first-child{
+	width: 60%;
+}
+
+#payMoney{
+	padding-top: 0px;
+	display: none;
+
+}
+
+
+#checkOutButton{
+	margin:auto;
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+
+}
+#checkOutButton> div:first-child{
+	padding-right: 6px;
+	padding-left: 6px;
+}
+
+#checkOutButton> div:nth-child(3){
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+#pay,#noPay{
+	font-size: 1.1em;
+	font-weight: ;
+	color: ;
+}
+
+
+#item1Display{
+}
+
+
+#popUpHeading{
+	background-color:#FAD8B6;
+	width: 100%;
+	height: 20%;
+
+}
+
+
+#OKicon{
+	font-size: 3.2em;
+	color: #DF8B37;
+	margin-left: 5px;	
+}
+
+#popUpMsg{
+	font-size: 3em;
+	font-weight: ;
+	color: #DF8B37;
+	margin-left: 15px;	
+}
+
+#popUp{
+	display: flex;
+	margin: auto;
+	align-items: center;
+	margin-top: 20px;
+
+
+}
+
+
+#page3Alert{
+	margin-top: 16px;
+}
+
+#day{
+	font-size: 1.2em;
+}
+
+
+#startBtn{
+	font-size: 2em;
+	display: flex;
+	width: 20%;
+	margin: auto;
+	margin-top: 40px;
+	align-items: center;
+	justify-content: center;
+}
+#searchIcon{
+	padding-right: 8px;
+}

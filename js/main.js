@@ -9,6 +9,9 @@ var checkTime=[];
 //DOM 
 $(".product").click(function(){
 	itemNo.push("");
+		if(itemNo.length>10){
+		return alert("一次最多只能選取10個商品喔");
+	};
 	var curItem = "#item"+itemNo.length+"Display";
 	var curItemName = "#item"+itemNo.length+"Name";
 	console.log(curItem);
@@ -62,7 +65,9 @@ $(".productHeat").click(function(){
 	$(this).closest("div[id*='item']").collapse('hide');
 	if($(this).attr("heat")==="熱"){
 		$(this).closest("div[id*='Display']").find("span[class='name']").css("color","red");
-	}
+	}else{
+		$(this).closest("div[id*='Display']").find("span[class='name']").css("color","black");
+	};
 
 });
 
