@@ -102,11 +102,13 @@ $("#return1").click(removeData);
 $("#return2").click(function(){
 	removeData();
 	queryDate=[];
+	$("#day").text("您尚未輸入");
 });
 //回到首頁
 $("#return3").click(function(){
 	removeData();
 	queryDate=[];
+	$("#day").text("您尚未輸入");
 });
 
 

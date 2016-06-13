@@ -208,3 +208,7 @@
 #searchIcon{
 	padding-right: 8px;
 }
+
+a:hover{
+	text-decoration: none;
+}
